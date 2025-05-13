@@ -22,6 +22,6 @@ debian:stable-slim
 
 ## 🚀 Quick Start:
 ```bash
-docker pull adilansari488/azure-k8s-cli:latest
-docker run -it adilansari/azure-k8s-cli
+docker pull ghcr.io/adilansari488/azure-k8s-cli:latest
+docker run -it ghcr.io/adilansari/azure-k8s-cli
 ```
