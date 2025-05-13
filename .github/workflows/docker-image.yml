@@ -11,10 +11,10 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  actions: write
-  packages: write
+permissions: write-all
+  # contents: write
+  # actions: write
+  # packages: write
 
 jobs:
 
