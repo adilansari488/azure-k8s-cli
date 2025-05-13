@@ -19,5 +19,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag azure-k8s-cli:$(date +%s)
+    - name: Build and Publish the Docker image
+      run: |
+        IMAGE_NAME=ghcr.io/${{ github.repository }}
+        IMAGE_TAG=$(date +%s)
+        # Build and tag the image
+        docker build -t $IMAGE_NAME:$IMAGE_TAG . -f Dockerfile
+        docker tag $IMAGE_NAME:$IMAGE_TAG $IMAGE_NAME:latest
+        # Login to GitHub Container Registry
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+        # Push both tags
+        docker push $IMAGE_NAME:$IMAGE_TAG
+        docker push $IMAGE_NAME:latest
+        
+
+      
